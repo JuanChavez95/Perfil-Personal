@@ -1,740 +1,687 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Juan Carlos Chavez Machaca">
+  <meta name="description" content="Perfil personal">
+  <title>Perfil Personal JCCHM</title>
 
-    <meta name="author" content="Juan Carlos Chavez Machaca">
-    <meta name="description" content="Perfil personal">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css">
-    <title>Perfil Personal JCCHM</title>
+  <style>
+    :root {
+      --bg-dark: #0a0a0a;
+      --card-bg: rgba(20, 20, 20, 0.85);
+      --accent: #c8a96e;
+      --accent2: #8fb8d4;
+      --white: #f0ece4;
+      --border: rgba(200, 169, 110, 0.4);
+      --shadow: 0 0 18px rgba(200, 169, 110, 0.15);
+    }
 
-    <style>
-        .columna{
-            padding: 5px 20px 5px 20px;
-            border-radius: none;
-        }
+    * { box-sizing: border-box; }
 
-        .encabezado--modificar{
-            border-radius: none;
-        }
+    body {
+      background: url('https://img.freepik.com/vector-gratis/diseno-fondo-negro-oscuro-rayas_1017-38064.jpg?semt=ais_hybrid&w=740&q=80') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Rajdhani', sans-serif;
+      color: var(--white);
+      margin: 0;
+      padding: 0;
+    }
 
-        #section_0 {
-            border-radius: 0;
-            border: none;
-            width: 100%;
-            border-collapse: collapse;
-            position: sticky; 
-            top: 0;
-            z-index: 10;
-            background-color: black;
-        }
+    /* ── HEADER TITLE ── */
+    .site-title {
+      text-align: center;
+      padding: 28px 20px 22px;
+      margin: 28px auto;
+      width: 88%;
+      max-width: 900px;
+      background: var(--card-bg);
+      border: 2px solid var(--accent);
+      border-radius: 18px;
+      box-shadow: var(--shadow), 0 0 0 6px rgba(200,169,110,0.08);
+      outline: 2px solid var(--accent);
+      outline-offset: 8px;
+    }
 
-        #section_0 th,
-        #section_0 td {
-            border-radius: 0;
-            border-top: 2px solid white;
-            border-bottom: 2px solid white;
-            text-align: center;
-        }
+    .site-title h1 {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(1rem, 3.5vw, 1.9rem);
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin: 0;
+      text-shadow: 0 0 20px rgba(200,169,110,0.4);
+    }
 
-        /* Cada celda-columna del nav ocupa espacio igual */
-        .nav__celda {
-            width: calc(100% / 7);
-            padding: 10px 5px;
-            transition: background-color 0.2s ease;
-            cursor: pointer;
-        }
+    /* ── STICKY NAV ── */
+    #nav-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #000;
+      border-top: 2px solid var(--accent);
+      border-bottom: 2px solid var(--accent);
+    }
 
-        /* El enlace ocupa TODA la celda */
-        .nav__celda a {
-            display: block;         
-            width: 100%;
-            height: 100%;
-            color: white;
-            text-decoration: none;
-            padding: 5px 0;
-        }
+    .nav-scroll {
+      display: flex;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .nav-scroll::-webkit-scrollbar { display: none; }
 
-        /* Hover oscurece la celda completa */
-        .nav__celda:hover {
-            background-color: #222222;
-        }
+    .nav-item {
+      flex: 0 0 auto;
+      text-align: center;
+      padding: 12px 16px;
+      cursor: pointer;
+      border-right: 1px solid var(--border);
+      transition: background 0.2s;
+      white-space: nowrap;
+      min-width: 130px;
+    }
+    .nav-item:last-child { border-right: none; }
+    .nav-item:hover { background: #1a1a1a; }
+    .nav-item:active { background: #2a2a2a; }
+    .nav-item a {
+      color: var(--white);
+      text-decoration: none;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(0.75rem, 1.8vw, 0.95rem);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
 
-        /* Clic — feedback visual */
-        .nav__celda:active {
-            background-color: #3a3a3a;
-        }
+    /* ── MARQUEE ── */
+    .marquee-wrap {
+      width: 88%;
+      max-width: 900px;
+      margin: 28px auto;
+      background: var(--card-bg);
+      border: 2px solid var(--accent);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      outline: 2px solid var(--accent);
+      outline-offset: 8px;
+      overflow: hidden;
+      padding: 20px 0 16px;
+    }
 
-        .columna__item{
-            display: inline-block;
-            margin-right: 45px;
-        }
+    .marquee-wrap h2 {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(0.85rem, 2.5vw, 1.3rem);
+      color: var(--accent);
+      text-align: center;
+      margin-bottom: 14px;
+      letter-spacing: 1px;
+    }
 
-        .columna__item a{
-            color: white;
-            text-decoration: none;
-        }
+    .marquee-galeria {
+      white-space: nowrap;
+      overflow: hidden;
+    }
 
-        .box1{
-            box-sizing: border-box;
-            margin: auto;
-            margin-top: 30px;
-            margin-bottom: 30px;
-            background-color: black;
-            width: 80%;
-            height: 80px;
-            border: 3px solid white;
-            border-radius: 20px 20px 20px 20px;
-            box-shadow: 0px 0px 5px 4px gray;
-            outline: 3px solid white;
-            outline-offset: 10px;
-        }
+    .marquee-galeria img {
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      margin-right: 20px;
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(200,169,110,0.3);
+      transition: transform 0.3s, filter 0.3s;
+      vertical-align: middle;
+    }
+    .marquee-galeria img:hover {
+      transform: scale(1.06);
+      filter: brightness(1.15);
+    }
 
-        .box1--modificar{
-            height: 350px;
-            margin-top: 50px;
-        }
+    /* ── SECTION CARDS ── */
+    .section-card {
+      width: 88%;
+      max-width: 900px;
+      margin: 28px auto;
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
 
+    .section-header {
+      background: rgba(100, 100, 90, 0.55);
+      padding: 14px 22px;
+      border-bottom: 2px solid var(--border);
+    }
 
-        li{
-            line-height: 1.5;
-        }
-        h1{
-            text-align: center;
-            color: white;
-            line-height: 1;
-        }
+    .section-header h2 {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(1rem, 2.8vw, 1.4rem);
+      color: var(--accent);
+      margin: 0;
+      letter-spacing: 1px;
+      text-align: center;
+    }
 
-        h3{
-            text-align: center;
-            font-size: 18px;
-            border: 3px solid white;
-            border-collapse: separate;
-            border-spacing: 0;
-            border-radius: 15px;
-            overflow: hidden;
-        }
+    .sub-header {
+      background: rgba(80, 80, 75, 0.45);
+      padding: 10px 22px;
+      border-bottom: 1px solid var(--border);
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(0.75rem, 2vw, 0.95rem);
+      color: var(--accent2);
+      letter-spacing: 1px;
+    }
 
-        h3[class="subtitle"]{
-            text-align: center;
-            font-size: 18px;
-            overflow: hidden;
-        }
-        th, td{
-            border: 1px solid white;
-            padding: 10px;
-        }
+    /* ── ROW INSIDE CARD ── */
+    .card-row {
+      display: flex;
+      flex-wrap: wrap;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-row:last-child { border-bottom: none; }
 
-        table{
-            margin: 0 auto 50px auto;
-            border-collapse: separate; 
-            border-spacing: 0;        
-            border: 3px solid white;    
-            border-radius: 15px;        
-            overflow: hidden;   
-        }
+    .card-label {
+      flex: 0 0 140px;
+      background: rgba(100,100,90,0.3);
+      padding: 16px 18px;
+      font-family: 'Orbitron', monospace;
+      font-size: 0.8rem;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      border-right: 1px solid var(--border);
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
 
-        img{
-            width: 250px;
-            height: 250px;
-        }
+    @media (max-width: 576px) {
+      .card-label {
+        flex: 0 0 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        justify-content: center;
+      }
+    }
 
-        video{
-            width: 460px;
-            height: 215px;
-        }
+    .card-body-col {
+      flex: 1;
+      padding: 16px 18px;
+      font-size: clamp(0.85rem, 2vw, 1rem);
+      line-height: 1.7;
+    }
 
-        section{
-            margin: 0 auto 20px auto;
-            display: flex;
-            width: 300px;
-            height: 300px;
-        }
+    .card-body-col ul {
+      padding-left: 18px;
+      margin: 0;
+    }
+    .card-body-col li { margin-bottom: 4px; }
 
-        section img{
-            width: 0px;
-            flex-grow: 1;
-            object-fit: cover;
-            opacity: .8;
-            transition: .5s ease;
-        }
-        section img:hover{
-            cursor: crosshair;
-            width: 250px;
-            opacity: 1;
-            filter: contrast(120%);
-        }
+    /* ── MEDIA (images & video) ── */
+    .card-media {
+      flex: 0 0 260px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-left: 1px solid var(--border);
+      gap: 8px;
+    }
 
-        h2{
-            text-align: center;
-            color: white;
-        }
+    @media (max-width: 700px) {
+      .card-media {
+        flex: 0 0 100%;
+        border-left: none;
+        border-top: 1px solid var(--border);
+      }
+    }
 
-        .contenedor{
-            border-top: 5px solid white;
-            padding: 20px;
-            margin-top: 10px;
-            width: 100%;
-            height: 150px;
-        }
+    .card-media img {
+      width: 100%;
+      max-width: 220px;
+      height: 180px;
+      object-fit: cover;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+    }
 
-        body{
-            background: url(https://img.freepik.com/vector-gratis/diseno-fondo-negro-oscuro-rayas_1017-38064.jpg?semt=ais_hybrid&w=740&q=80);
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            position: relative;
-            margin: 0;
-        }
+    .card-media video {
+      width: 100%;
+      max-width: 280px;
+      height: auto;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+    }
 
-        .encabezado{
-            background-color: #626658c7;
-            color: white;
-            font-weight: bold;
-        }
+    .media-caption {
+      font-size: 0.78rem;
+      color: var(--accent2);
+      text-align: center;
+      font-style: italic;
+    }
 
-        .celda{
-            font-size: 20px;
-            color: white;
-        }
+    /* ── LINKS ── */
+    .link {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s, text-decoration 0.2s;
+    }
+    .link:hover {
+      color: var(--accent2);
+      text-decoration: underline;
+    }
 
-        .celda > #texto{
-            text-align: justify;
-            white-space: pre-wrap;
-        }
+    /* ── TABLE INSIDE CARD (canciones / juegos / tareas) ── */
+    .inner-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: clamp(0.8rem, 1.8vw, 0.95rem);
+    }
+    .inner-table thead tr {
+      background: rgba(100,100,90,0.45);
+    }
+    .inner-table th {
+      padding: 10px 14px;
+      color: var(--accent);
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      letter-spacing: 1px;
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+    .inner-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(200,169,110,0.15);
+      vertical-align: middle;
+    }
+    .inner-table tr:last-child td { border-bottom: none; }
+    .inner-table tr:hover td { background: rgba(200,169,110,0.05); }
+    .inner-table td:has(video) { text-align: center; }
+    .inner-table video {
+      width: 100%;
+      max-width: 260px;
+      height: auto;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
 
+    /* responsive scroll for inner tables */
+    .table-wrap { overflow-x: auto; }
 
-        .caja{
-            box-sizing: border-box;
-            width: 50px;
-            height: 60px;
-            left: 0;
-            top: 200px;
-            background-color: #626658c7;
-            border: 2px solid white;
-            outline: 2px solid white;
-            outline-offset: 4px;
-            position: fixed;
-            opacity: 0.5;
-            text-align: center;
-            overflow: hidden;
-            padding-top: 20px;
-        }
-        .caja:hover{
-            padding-top: 4px;
-            box-sizing: border-box;
-            width: 280px;
-            height: 60px;
-            background-color: #626658c7;
-            border: 2px solid white;
-            outline: 2px solid white;
-            outline-offset: 4px;
-            position: fixed;
-            top: 200px;
-            left: 0;
-            padding-top: 20px;
-            text-align: center;
-            opacity: 0.8;
+    /* ── FOOTER / REDES ── */
+    .footer-section {
+      border-top: 4px solid var(--accent);
+      background: var(--card-bg);
+      padding: 28px 20px 20px;
+      margin-top: 10px;
+    }
 
-        }
-        .caja a{
-            color: #626658c7;
-        }
+    .social-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 28px;
+      margin-bottom: 20px;
+    }
 
-        .caja:hover a{
-            text-decoration: none;
-            color: white;
-            font-size: 18px;
-            text-transform: uppercase;
-        }
+    .social-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
 
-        .link{
-            font-weight: bold;
-            color: white;
-        }
+    .social-item a {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.9rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .social-item a:hover { color: var(--accent2); text-decoration: underline; }
 
-        .imagen{
-            width: 60px;
-            height: 60px;
-            filter: drop-shadow(0px 0px 5px white);
-        }
+    .social-item img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 6px white);
+    }
 
-        .imagen22{
-            width: 90px;
-            height: 50px;
-            filter: drop-shadow(0px 0px 5px white);
-        }
+    .social-item .img-wide {
+      width: 90px;
+      height: 50px;
+    }
 
-        #redes_sociales .col{
-            padding-left: 35px;
-            padding-right: 135px;
-        }
+    .footer-copy {
+      text-align: center;
+      font-size: 0.8rem;
+      color: rgba(240,236,228,0.5);
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+      margin-top: 8px;
+      font-family: 'Orbitron', monospace;
+      letter-spacing: 1px;
+    }
 
-        #redes_sociales thead tr td a{
-            font-size: 20px;
-            text-decoration: none;
-        }
-
-        #redes_sociales thead tr td a:hover{
-            color: blue;
-            text-decoration: underline;
-        }
-
-        #redes_sociales thead tr td{
-            border: none;
-        }
-
-        #redes_sociales thead tr th{
-            border: none;
-        }
-
-        #redes_sociales{
-            border: none;
-        }
-
-        #redes_sociales thead tr th{
-            font-size: 25px;
-            color:white;
-        }
-
-        video{
-            width: 350px;
-            height: 175px;
-        }
-
-        /* ========================= */
-        /* MARQUEE DE IMÁGENES */
-        /* ========================= */
-
-        .marquee-contenedor{
-            height: 430px;
-            overflow: hidden;
-            padding-top: 20px;
-        }
-
-        /* Evita conflictos */
-        .marquee-galeria{
-            width: 100%;
-            white-space: nowrap;
-            overflow: hidden;
-            margin-top: 20px;
-        }
-
-        /* SOLO imágenes del marquee */
-        .marquee-galeria img{
-            width: 280px;
-            height: 280px;
-            object-fit: cover;
-
-            margin-right: 25px;
-
-            border: 3px solid white;
-            border-radius: 15px;
-
-            box-shadow: 0px 0px 10px gray;
-
-            transition: 0.3s ease;
-        }
-
-        /* Hover */
-        .marquee-galeria img:hover{
-            transform: scale(1.05);
-            filter: brightness(1.1);
-        }
-
-        /* IMPORTANTE */
-        /* Evita romper el marquee con tu selector global section */
-        section{
-            all: unset;
-        }
-    </style>
+    /* ── FLOATING PANEL ── */
+    .caja {
+      box-sizing: border-box;
+      width: 50px;
+      height: 60px;
+      left: 0;
+      top: 200px;
+      background-color: #626658c7;
+      border: 2px solid white;
+      outline: 2px solid white;
+      outline-offset: 4px;
+      position: fixed;
+      opacity: 0.5;
+      text-align: center;
+      overflow: hidden;
+      padding-top: 20px;
+      transition: width 0.3s, opacity 0.3s, padding 0.3s;
+      z-index: 200;
+    }
+    .caja:hover {
+      width: 280px;
+      padding-top: 18px;
+      opacity: 0.9;
+    }
+    .caja a {
+      color: transparent;
+      font-size: 0;
+      text-decoration: none;
+    }
+    .caja:hover a {
+      color: white;
+      font-size: 16px;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-family: 'Rajdhani', sans-serif;
+    }
+  </style>
 </head>
-
 <body>
-    <!--PRIMERA SECCIÓN: Título-->
-    <div class="box1">
-        <h1>PERFIL PERSONAL DE JUAN LANGOSTA</h1>
+
+  <!-- TÍTULO PRINCIPAL -->
+  <div class="site-title">
+    <h1>PERFIL PERSONAL DE JUAN LANGOSTA</h1>
+  </div>
+
+  <!-- NAV STICKY -->
+  <nav id="nav-bar">
+    <div class="nav-scroll">
+      <div class="nav-item"><a href="#section_1">1. Datos Personales</a></div>
+      <div class="nav-item"><a href="#section_2">2. Datos Generales</a></div>
+      <div class="nav-item"><a href="#section_3">3. Canciones Favoritas</a></div>
+      <div class="nav-item"><a href="#section_4">4. Juegos Favoritos</a></div>
+      <div class="nav-item"><a href="#section_5">5. Misión y Visión</a></div>
+      <div class="nav-item"><a href="#section_6">6. Tareas Destacadas</a></div>
+      <div class="nav-item"><a href="#section_7">7. Redes Sociales</a></div>
+    </div>
+  </nav>
+
+  <!-- MARQUEE DE FOTOS -->
+  <div class="marquee-wrap">
+    <h2>FOTOS IMPORTANTES DE JUAN LANGOSTA</h2>
+    <marquee behavior="scroll" direction="right" scrollamount="10" class="marquee-galeria">
+      <img src="imagenes/viaje.jpg" alt="viaje">
+      <img src="imagenes/bros.jpg" alt="bros">
+      <img src="imagenes/mascotas.jpg" alt="mascotas">
+      <img src="imagenes/cheto.jpg" alt="cheto">
+    </marquee>
+  </div>
+
+  <!-- ── SECCIÓN 1: DATOS PERSONALES ── -->
+  <div class="section-card" id="section_1">
+    <div class="section-header"><h2>DATOS PERSONALES</h2></div>
+
+    <!-- Info personal -->
+    <div class="card-row">
+      <div class="card-body-col">
+        <ul>
+          <li><strong>Nombre:</strong> Juan Carlos Chavez Machaca</li>
+          <li><strong>Edad:</strong> 20 años</li>
+          <li><strong>Fecha de Nacimiento:</strong> 28-04-2005</li>
+          <li><strong>Altura:</strong> 170 cm</li>
+        </ul>
+      </div>
+      <div class="card-media">
+        <img src="https://i.ibb.co/WWTZ15S7/juan.jpg" alt="Juan Carlos">
+      </div>
     </div>
 
-    <!-- DIVISIÓN DE SECCIONES DE LA PÁGINA WEB-->
-    <table id="section_0">
-        <thead>
-            <tr class="encabezado encabezado--modificar">
-                <th colspan="7" class="columna">CONTENIDO DE LA PRESENTACIÓN</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="columna nav__celda"><a href="#section_1">1. Datos Personales</a></td>
-                <td class="columna nav__celda"><a href="#section_2">2. Datos Generales</a></td>
-                <td class="columna nav__celda"><a href="#section_3">3. Canciones Favoritas</a></td>
-                <td class="columna nav__celda"><a href="#section_4">4. Juegos Favoritos</a></td>
-                <td class="columna nav__celda"><a href="#section_5">5. Misión y Visión</a></td>
-                <td class="columna nav__celda"><a href="#section_6">6. Tareas Destacadas</a></td>
-                <td class="columna nav__celda"><a href="#section_7">7. Redes Sociales</a></td>
-            </tr>
-        </tbody>
-    </table>
-
-    <!-- SECCIÓN DE CARRUSEL DE FOTOS INTERACTIVAS-->
-    <div class="box1 box1--modificar marquee-contenedor">
-
-        <h2>FOTOS IMPORTANTES DE JUAN LANGOSTA</h2>
-
-        <marquee 
-            behavior="scroll" 
-            direction="right" 
-            scrollamount="10"
-            class="marquee-galeria"
-        >
-
-            <img src="imagenes/viaje.jpg" alt="viaje">
-
-            <img src="imagenes/bros.jpg" alt="bros">
-
-            <img src="imagenes/mascotas.jpg" alt="mascotas">
-
-            <img src="imagenes/cheto.jpg" alt="cheto">
-
-        </marquee>
-
+    <!-- Familia -->
+    <div class="sub-header">INTEGRANTES DE LA FAMILIA</div>
+    <div class="card-row">
+      <div class="card-body-col">
+        <ul>
+          <li><strong>Mamá:</strong> Andrea Machaca Quispe</li>
+          <li><strong>Papá:</strong> Juan Chavez Condori</li>
+          <li><strong>Hermano del medio:</strong> Luis Angel Chavez Machaca</li>
+          <li><strong>Hermano menor:</strong> Jose Miguel Chavez Machaca</li>
+        </ul>
+      </div>
+      <div class="card-media">
+        <img src="imagenes/familia.jpg" alt="Familia">
+      </div>
     </div>
 
-    <!--SEGUNDA SECCIÓN: Datos Personales-->
-    <table id = "section_1">
-        <thead>
-            <tr class = "encabezado">
-                <th colspan="2">
-                    <h2>DATOS PERSONALES</h2>
-                </th>
-            </tr>
-        </thead>
-     
-        <tbody>
-            <tr>
-                <td class = "celda">
-                    <ul>
-                        <li>NOMBRE: Juan Carlos Chavez Machaca</li>
-                        <li>EDAD: 20 años</li>
-                        <li>FECHA DE NACIMIENTO: 28-04-2005</li>
-                        <li>ALTURA: 170 cm</li>
-                    </ul>
-                </td>
+    <!-- Dirección -->
+    <div class="sub-header">DIRECCIÓN</div>
+    <div class="card-row">
+      <div class="card-body-col">
+        <ul>
+          <li>Ciudad El Alto, Bolivia</li>
+          <li>Lado Carretera Viacha en el Distrito 7</li>
+          <li>Zona San Juanito, Calle Adela Zamudio</li>
+          <li><a class="link" href="https://maps.app.goo.gl/knKghc9KWwMvt5id9?g_st=aw" target="_blank">Ver en Google Maps →</a></li>
+        </ul>
+      </div>
+      <div class="card-media">
+        <img src="imagenes/Captura.PNG" alt="Mi casa">
+      </div>
+    </div>
+  </div>
 
-                <td class = "celda">
-                    <img src="https://i.ibb.co/WWTZ15S7/juan.jpg" alt="Juan Carlos">
-                </td>
+  <!-- ── SECCIÓN 2: DATOS GENERALES ── -->
+  <div class="section-card" id="section_2">
+    <div class="section-header"><h2>DATOS GENERALES</h2></div>
 
-                <tr class = "encabezado">
-                    <th colspan="2">INTEGRANTES DE LA FAMILIA</th>
-                </tr>
-                <tr>
-                    <td class = "celda">
-                        <ul>
-                            <li>Mamá: Andrea Machaca Quispe</li>
-                            <li>Papá: Juan Chavez Condori</li>
-                            <li>Hermano del medio: Luis Angel Chavez Machaca</li>
-                            <li>Hermano menor: Jose Miguel Chavez Machaca</li>
-                        </ul>
-                    </td>
-
-                    <td class = "celda">
-                        <img src="imagenes/familia.jpg" alt="Imagen de Familia">
-                    </td>
-                </tr>
-
-                <tr class = "encabezado">
-                    <th colspan="2">DIRECCIÓN</th>
-
-                </tr>
-
-                <tr>
-                    <td class = "celda">
-                        <ul>
-                            <li>Ciudad El Alto Bolivia</li>
-                            <li>Lado Carretera Viacha en el Distrito 7</li>
-                            <li>Zona San Juanito Calle Adela zamudio</li>
-                            <li><a class = "link" href="https://maps.app.goo.gl/knKghc9KWwMvt5id9?g_st=aw" target="_blank">Link de Google Maps.</a></li>
-                        </ul>
-                    </td>
-
-                    <td class = "celda">
-                        <img src="imagenes/Captura.png" alt="Mi casa">
-                    </td>
-                </tr>
-            </tr>
-
-        </tbody>
-    </table>
-
-    <!--TERCERA SECCIÓN: Datos Generales-->
-    <table id = "section_2">
-        <thead>
-            <tr class = "encabezado">
-                <th colspan="3">
-                    <h2>DATOS GENERALES</h2>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th class = "celda">PASATIEMPOS</th>
-                <td class = "celda">
-                    <ul>
-                        <li>Jugar videojuegos en PC.</li>
-                        <li>Escuchar música con audífonos.</li>
-                        <li>Experimentar con la IA.</li>
-                        <li>Comprar Hot Wheels.</li>
-                        <li>Programas prototipos de aplicaciones.</li>
-                    </ul>
-                </td>
-
-                <td class = "celda">
-                    <h3 class = "subtitle">Gameplay de Left 4 Dead 2</h3>
-                    <img src="imagenes/left4dead.jpg" alt="Imagen de pasatiempos">
-                </td>
-
-            </tr>
-
-            <tr>
-                <th class = "celda">ESTUDIOS</th>
-                <td class = "celda">
-                    <ul>
-                        <li>Título de Bachiller</li>
-                        <li>Técnico Medio Contabilidad</li>
-                        <li id="texto">Estudio actual de Ingeniería de Sistemas en 
-                            <br>la USB en Séptimo semestre.</li>
-                    </ul>
-                </td>
-
-                <td class = "celda">
-                    <h3 class = "subtitle">Universidad Salesiana de Bolivia</h3>
-                    <img src="imagenes/UNIVERSITY.jpg" alt="Imagen de estudios">
-                </td class = "celda">
-            </tr>
-        </tbody>
-    </table>
-
-    <!--CUARTA SECCIÓN: Canciones Favoritas-->
-    <table id = "section_3">
-        <thead>
-            <tr class = "encabezado">
-                <th colspan="4">CANCIONES FAVORITAS</th>
-            </tr>
-
-            <tr class = "encabezado">
-                <th>
-                    Canción
-                </th>
-
-                <th>
-                    Género
-                </th>
-
-                <th>
-                    Descripción
-                </th>
-
-                <th>Vídeo Musical</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class = "celda">
-                <td>Twenty one Pilots: Stressed Out</td>
-
-                <td>Pop Alternativo</td>
-                <td>Su tonada es incremental y cada tonada de 
-                    <br>única en la canción.
-                </td>
-                <td>
-                    <video src="videos/twenty one pilots.mp4" controls autoplay muted></video>
-                </td>
-            </tr>
-
-            <tr class = "celda">
-                <td>Jake Daniels - Two Face Dark 
-                    <br>Version</td>
-                
-                    <td>Dark Pop.</td>
-                    <td>Una letra única y me gusta mucho las
-                        <br>referencias hacia el vacío.
-                    </td>
-                <td>
-                    <video src="videos/TwoFaces.mp4" controls autoplay muted></video>
-                    
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-    <!-- QUINTA SECCIÓN: Juegos favoritos-->
-    <table id = "section_4">
-        <thead>
-            <tr class = "encabezado">
-                <th colspan="6">
-                    JUEGOS FAVORITOS
-                </th>
-            </tr>
-
-            <tr class = "encabezado">
-                <th>Video Juegos</th>
-                <th>Horas de Juego</th>
-                <th>Logros Principales</th>
-                <th>Personaje Favorito</th>
-                <th>Portada del Juego</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <tr class = "celda">
-                <td><b>Half Life 2</b></td>
-                <td>65 horas de juego.</td>
-                <td>
-                    <ul>
-                        <li>Atropello.</li>
-                        <li>Quebranta Huesos</li>
-                        <li>Huida de ciudad 17</li>
-                    </ul>
-                </td>
-                <td>Gman</td>
-                <td>
-                    <video src="videos/halflife2.mp4" controls autoplay muted></video>
-                </td>
-            </tr>
-
-            <tr class = "celda">
-                <td><b>Hollow Knight Silsong</b></td>
-                <td>95 horas de juego.</td>
-                <td>
-                    <ul>
-                        <li>Finalizar el juego</li>
-                        <li>Completas las máscaras</li>
-                        <li>Rescatar las 30 pulgas</li>
-                    </ul>
-                </td>
-                <td>Hornet</td>
-                </td>
-                <td>
-                   <video src="videos/silksong.mp4" controls autoplay muted></video>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-    <!-- SEXTA SECCIÓN: Misión y Visión de MI-->
-    <table id = "section_5">
-        <thead>
-            <tr class = "encabezado">
-                <th colspan="3">MISIÓN Y VISIÓN</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class = "celda">
-                <th>MISIÓN</th>
-                <td>Diseñar, implementar y optimizar sistemas informáticos con 
-                    <br>tecnológicas innovadoras, garantizando la eficiencia, 
-                    <br>seguridad y escalabilidad de sistemas.</td>
-
-                <td>
-                    <img src="imagenes/IA1.jpg" alt="Imagen IA 1">
-                </td>
-            </tr>
-
-            <tr class = "celda">
-                <th>VISIÓN</th>
-                <td>Ser un elemento importante en el desarrollo de 
-                    <br>necesidades teconológicas utilizando la IA 
-                    <br>y conocimientos propios en un lapso de 10 años.</td>
-                
-                <td>
-                    <img src="imagenes/IA2.jpg" alt="Imagen IA 2">
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-    <!--SÉPTIMA SECCIÓN: Tareas destacadas de la carrera-->
-    <table id = "section_6">
-        <thead>
-            <tr class = "encabezado">
-                <th colspan="3">TAREAS DESTACADAS</th>
-            </tr>
-
-            <tr class = "encabezado">
-                <th>TRABAJO</th>
-                <th>SEMESTRE</th>
-                <th>LINK</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <tr class = "celda">
-                <td>Sistema Préstamo de laboratorios</td>
-                <td>Quinto</td>
-                <td>
-                    <a class = "link" href="https://github.com/JuanChavez95/SistemaControlPrestamoLab.git" target="_blank">Link GitHub</a>
-                </td>
-            </tr>
-
-            <tr class = "celda">
-                <td>Sistema Administración Almacenes FORNO</td>
-                <td>Sexto</td>
-                <td>
-                    <a class = "link" href="https://github.com/JuanChavez95/SI-Sistema-de-Informacion-para-la-Administracion-de-Almacenes-11-25.git" target="_blank">Link GitHub</a>
-                </td>
-            </tr>
-
-            <tr class = "celda">
-                <td>Sistema Estadística</td>
-                <td>Tercero</td>
-                <td>
-                    <a class = "link" href="PROYECTO_UNO_ESTADISTICA.py" target="_blank" download>Descargar Python</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-    <div class="contenedor">
-        <!--OCTAVA SECCIÓN: Enlaces de redes sociales-->
-        <footer id = "section_7">
-            <table id = "redes_sociales">
-                <thead>
-                    <tr>
-                         <td class = "card">
-                            <a class = "link" href="https://www.tiktok.com/@dead_you2005?is_from_webapp=1&sender_device=pc" title = "link de tiktok" target="_blank">TikTok</a>
-                        </td>
-
-                        <td class="col">
-                            <img class = "imagen" src="imagenes/tiktok.png">
-                        </td>
-
-                        <td class = "card">
-                            <a class = "link" href="https://e7.pngegg.com/pngimages/125/937/png-clipart-youtube-logo-youtube-angle-logo.png" title="link de you tube" target="_blank">YouTube</a></td>
-                        </td>
-
-                        <td class="col">
-                            <img src="imagenes/youtube.png" alt="imagen de youtube" class="imagen22">
-                        </td>
-
-                        <td class = "card">
-                                <a class = "link" href="https://www.facebook.com/share/1GjxdkUzxr/" title="link de facebook" target="_blank">Facebook</a>
-                        </td>
-
-                        <td class="col">
-                                <img class = "imagen" src="imagenes/face.png">
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <th colspan="6">Perfil Personal de Juan Langosta - @2026</th>
-                    </tr>
-                </thead>
-            </table>
-        </footer>
+    <div class="card-row">
+      <div class="card-label">PASATIEMPOS</div>
+      <div class="card-body-col">
+        <ul>
+          <li>Jugar videojuegos en PC.</li>
+          <li>Escuchar música con audífonos.</li>
+          <li>Experimentar con la IA.</li>
+          <li>Comprar Hot Wheels.</li>
+          <li>Programar prototipos de aplicaciones.</li>
+        </ul>
+      </div>
+      <div class="card-media">
+        <span class="media-caption">Gameplay de Left 4 Dead 2</span>
+        <img src="imagenes/left4dead.jpg" alt="Left 4 Dead 2">
+      </div>
     </div>
 
+    <div class="card-row">
+      <div class="card-label">ESTUDIOS</div>
+      <div class="card-body-col">
+        <ul>
+          <li>Título de Bachiller</li>
+          <li>Técnico Medio en Contabilidad</li>
+          <li>Ingeniería de Sistemas — USB — Séptimo semestre (actual)</li>
+        </ul>
+      </div>
+      <div class="card-media">
+        <span class="media-caption">Universidad Salesiana de Bolivia</span>
+        <img src="imagenes/UNIVERSITY.jpg" alt="USB">
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECCIÓN 3: CANCIONES ── -->
+  <div class="section-card" id="section_3">
+    <div class="section-header"><h2>CANCIONES FAVORITAS</h2></div>
+    <div class="table-wrap">
+      <table class="inner-table">
+        <thead>
+          <tr>
+            <th>Canción</th>
+            <th>Género</th>
+            <th>Descripción</th>
+            <th>Vídeo Musical</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Twenty One Pilots: Stressed Out</td>
+            <td>Pop Alternativo</td>
+            <td>Su tonada es incremental y cada tonada es única en la canción.</td>
+            <td><video src="videos/twenty one pilots.mp4" controls autoplay muted></video></td>
+          </tr>
+          <tr>
+            <td>Jake Daniels — Two Face Dark Version</td>
+            <td>Dark Pop</td>
+            <td>Una letra única con referencias hacia el vacío.</td>
+            <td><video src="videos/TwoFaces.mp4" controls autoplay muted></video></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── SECCIÓN 4: JUEGOS ── -->
+  <div class="section-card" id="section_4">
+    <div class="section-header"><h2>JUEGOS FAVORITOS</h2></div>
+    <div class="table-wrap">
+      <table class="inner-table">
+        <thead>
+          <tr>
+            <th>Videojuego</th>
+            <th>Horas</th>
+            <th>Logros</th>
+            <th>Personaje Favorito</th>
+            <th>Vídeo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Half Life 2</strong></td>
+            <td>65 h</td>
+            <td>
+              <ul>
+                <li>Atropello</li>
+                <li>Quebranta Huesos</li>
+                <li>Huida de Ciudad 17</li>
+              </ul>
+            </td>
+            <td>Gman</td>
+            <td><video src="videos/halflife2.mp4" controls autoplay muted></video></td>
+          </tr>
+          <tr>
+            <td><strong>Hollow Knight: Silksong</strong></td>
+            <td>95 h</td>
+            <td>
+              <ul>
+                <li>Finalizar el juego</li>
+                <li>Completar las máscaras</li>
+                <li>Rescatar las 30 pulgas</li>
+              </ul>
+            </td>
+            <td>Hornet</td>
+            <td><video src="videos/silksong.mp4" controls autoplay muted></video></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── SECCIÓN 5: MISIÓN Y VISIÓN ── -->
+  <div class="section-card" id="section_5">
+    <div class="section-header"><h2>MISIÓN Y VISIÓN</h2></div>
+
+    <div class="card-row">
+      <div class="card-label">MISIÓN</div>
+      <div class="card-body-col">
+        Diseñar, implementar y optimizar sistemas informáticos con tecnologías innovadoras, garantizando la eficiencia, seguridad y escalabilidad de los sistemas.
+      </div>
+      <div class="card-media">
+        <img src="imagenes/IA1.jpg" alt="IA 1">
+      </div>
+    </div>
+
+    <div class="card-row">
+      <div class="card-label">VISIÓN</div>
+      <div class="card-body-col">
+        Ser un elemento importante en el desarrollo de necesidades tecnológicas utilizando la IA y conocimientos propios en un lapso de 10 años.
+      </div>
+      <div class="card-media">
+        <img src="imagenes/IA2.jpg" alt="IA 2">
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECCIÓN 6: TAREAS DESTACADAS ── -->
+  <div class="section-card" id="section_6">
+    <div class="section-header"><h2>TAREAS DESTACADAS</h2></div>
+    <div class="table-wrap">
+      <table class="inner-table">
+        <thead>
+          <tr>
+            <th>Trabajo</th>
+            <th>Semestre</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Sistema Préstamo de Laboratorios</td>
+            <td>Quinto</td>
+            <td><a class="link" href="https://github.com/JuanChavez95/SistemaControlPrestamoLab.git" target="_blank">GitHub →</a></td>
+          </tr>
+          <tr>
+            <td>Sistema Administración Almacenes FORNO</td>
+            <td>Sexto</td>
+            <td><a class="link" href="https://github.com/JuanChavez95/SI-Sistema-de-Informacion-para-la-Administracion-de-Almacenes-11-25.git" target="_blank">GitHub →</a></td>
+          </tr>
+          <tr>
+            <td>Sistema Estadística</td>
+            <td>Tercero</td>
+            <td><a class="link" href="PROYECTO_UNO_ESTADISTICA.py" target="_blank" download>Descargar Python →</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── SECCIÓN 7: REDES SOCIALES / FOOTER ── -->
+  <footer class="footer-section" id="section_7">
+    <div class="social-grid">
+      <div class="social-item">
+        <img src="imagenes/tiktok.png" alt="TikTok">
+        <a href="https://www.tiktok.com/@dead_you2005?is_from_webapp=1&sender_device=pc" target="_blank">TikTok</a>
+      </div>
+      <div class="social-item">
+        <img src="imagenes/youtube.png" alt="YouTube" class="img-wide">
+        <a href="https://e7.pngegg.com/pngimages/125/937/png-clipart-youtube-logo-youtube-angle-logo.png" target="_blank">YouTube</a>
+      </div>
+      <div class="social-item">
+        <img src="imagenes/face.png" alt="Facebook">
+        <a href="https://www.facebook.com/share/1GjxdkUzxr/" target="_blank">Facebook</a>
+      </div>
+    </div>
+    <div class="footer-copy">Perfil Personal de Juan Langosta — @2026</div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
