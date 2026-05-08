@@ -14,10 +14,10 @@
     :root {
       --bg-dark: #0a0a0a;
       --card-bg: rgba(20, 20, 20, 0.85);
-      --accent: #c8a96e;
+      --accent: #EFF4DF;
       --accent2: #8fb8d4;
       --white: #f0ece4;
-      --border: rgba(200, 169, 110, 0.4);
+      --border: white;
       --shadow: 0 0 18px rgba(200, 169, 110, 0.15);
     }
 
@@ -71,8 +71,22 @@
       display: flex;
       overflow-x: auto;
       scrollbar-width: none;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .nav-scroll--modificar{
+        border-bottom: 2px solid white;
+        justify-content: center;
+        text-align: center;
     }
     .nav-scroll::-webkit-scrollbar { display: none; }
+
+    @media (max-width: 768px) {
+      .nav-scroll {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+      }
+    }
 
     .nav-item {
       flex: 0 0 auto;
@@ -166,6 +180,7 @@
       margin: 0;
       letter-spacing: 1px;
       text-align: center;
+      color: white;
     }
 
     .sub-header {
@@ -174,7 +189,7 @@
       border-bottom: 1px solid var(--border);
       font-family: 'Orbitron', monospace;
       font-size: clamp(0.75rem, 2vw, 0.95rem);
-      color: var(--accent2);
+      color: var(--white);
       letter-spacing: 1px;
     }
 
@@ -192,7 +207,7 @@
       padding: 16px 18px;
       font-family: 'Orbitron', monospace;
       font-size: 0.8rem;
-      color: var(--accent);
+      color: var(--white);
       display: flex;
       align-items: center;
       border-right: 1px solid var(--border);
@@ -263,7 +278,8 @@
       font-size: 0.78rem;
       color: var(--accent2);
       text-align: center;
-      font-style: italic;
+      font-weight: bold;
+      color: white;
     }
 
     /* ── LINKS ── */
@@ -310,6 +326,21 @@
       height: auto;
       border: 1px solid var(--border);
       border-radius: 8px;
+    }
+
+    @media (max-width: 600px) {
+      .inner-table video {
+        max-width: 100%;
+        width: 100%;
+        aspect-ratio: 9 / 16;
+        height: auto;
+        object-fit: cover;
+      }
+      /* En mobile los videos van en su propia fila */
+      .inner-table td:has(video) {
+        display: block;
+        width: 100%;
+      }
     }
 
     /* responsive scroll for inner tables */
@@ -417,6 +448,9 @@
 
   <!-- NAV STICKY -->
   <nav id="nav-bar">
+    <div class="nav-scroll nav-scroll--modificar">
+        <h2>PERFIL PERSONAL - JUAN LAGOSTA</h2>
+    </div>
     <div class="nav-scroll">
       <div class="nav-item"><a href="#section_1">1. Datos Personales</a></div>
       <div class="nav-item"><a href="#section_2">2. Datos Generales</a></div>
@@ -486,7 +520,7 @@
         </ul>
       </div>
       <div class="card-media">
-        <img src="imagenes/Captura.PNG" alt="Mi casa">
+        <img src="imagenes/Captura.png" alt="Mi casa">
       </div>
     </div>
   </div>
