@@ -74,10 +74,10 @@
       justify-content: center;
       flex-wrap: wrap;
     }
-    .nav-scroll--modificar{
-        border-bottom: 2px solid white;
-        justify-content: center;
-        text-align: center;
+    .nav-scroll--modificar {
+      border-bottom: 2px solid white;
+      text-align: center;
+      justify-content: center !important;
     }
     .nav-scroll::-webkit-scrollbar { display: none; }
 
@@ -134,10 +134,7 @@
       letter-spacing: 1px;
     }
 
-    .marquee-galeria {
-      white-space: nowrap;
-      overflow: hidden;
-    }
+    .marquee-galeria { white-space: nowrap; overflow: hidden; }
 
     .marquee-galeria img {
       width: 220px;
@@ -176,11 +173,10 @@
     .section-header h2 {
       font-family: 'Orbitron', monospace;
       font-size: clamp(1rem, 2.8vw, 1.4rem);
-      color: var(--accent);
+      color: white;
       margin: 0;
       letter-spacing: 1px;
       text-align: center;
-      color: white;
     }
 
     .sub-header {
@@ -231,13 +227,10 @@
       line-height: 1.7;
     }
 
-    .card-body-col ul {
-      padding-left: 18px;
-      margin: 0;
-    }
+    .card-body-col ul { padding-left: 18px; margin: 0; }
     .card-body-col li { margin-bottom: 4px; }
 
-    /* ── MEDIA (images & video) ── */
+    /* ── MEDIA ── */
     .card-media {
       flex: 0 0 260px;
       padding: 14px;
@@ -266,20 +259,11 @@
       border-radius: 10px;
     }
 
-    .card-media video {
-      width: 100%;
-      max-width: 280px;
-      height: auto;
-      border: 2px solid var(--border);
-      border-radius: 10px;
-    }
-
     .media-caption {
       font-size: 0.78rem;
-      color: var(--accent2);
+      color: white;
       text-align: center;
       font-weight: bold;
-      color: white;
     }
 
     /* ── LINKS ── */
@@ -287,22 +271,17 @@
       color: var(--accent);
       font-weight: 700;
       text-decoration: none;
-      transition: color 0.2s, text-decoration 0.2s;
+      transition: color 0.2s;
     }
-    .link:hover {
-      color: var(--accent2);
-      text-decoration: underline;
-    }
+    .link:hover { color: var(--accent2); text-decoration: underline; }
 
-    /* ── TABLE INSIDE CARD (canciones / juegos / tareas) ── */
+    /* ── TABLA GENERAL (canciones / tareas) ── */
     .inner-table {
       width: 100%;
       border-collapse: collapse;
       font-size: clamp(0.8rem, 1.8vw, 0.95rem);
     }
-    .inner-table thead tr {
-      background: rgba(100,100,90,0.45);
-    }
+    .inner-table thead tr { background: rgba(100,100,90,0.45); }
     .inner-table th {
       padding: 10px 14px;
       color: var(--accent);
@@ -314,36 +293,58 @@
     }
     .inner-table td {
       padding: 12px 14px;
-      border-bottom: 1px solid rgba(200,169,110,0.15);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
       vertical-align: middle;
     }
     .inner-table tr:last-child td { border-bottom: none; }
     .inner-table tr:hover td { background: rgba(200,169,110,0.05); }
-    .inner-table td:has(video) { text-align: center; }
+    .inner-table td:has(video) { text-align: center; padding: 0; width: 120px; }
     .inner-table video {
       width: 100%;
-      max-width: 260px;
-      height: auto;
+      aspect-ratio: 9 / 16;
+      display: block;
+      object-fit: cover;
       border: 1px solid var(--border);
-      border-radius: 8px;
     }
 
-    @media (max-width: 600px) {
-      .inner-table video {
-        max-width: 100%;
-        width: 100%;
-        aspect-ratio: 9 / 16;
-        height: auto;
-        object-fit: cover;
-      }
-      /* En mobile los videos van en su propia fila */
-      .inner-table td:has(video) {
-        display: block;
-        width: 100%;
-      }
+    /* ── TABLA DE JUEGOS — video 16:9 ── */
+    .games-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: clamp(0.8rem, 1.8vw, 0.95rem);
+    }
+    .games-table thead tr { background: rgba(100,100,90,0.45); }
+    .games-table th {
+      padding: 10px 14px;
+      color: var(--accent);
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      letter-spacing: 1px;
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+    .games-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      vertical-align: middle;
+    }
+    .games-table tr:last-child td { border-bottom: none; }
+    .games-table tr:hover td { background: rgba(200,169,110,0.05); }
+    .games-table ul { margin: 0; padding-left: 16px; }
+
+    /* Columna video: llena su celda */
+    .games-table .col-video {
+      width: 120px;
+      padding: 0;
+    }
+    .games-table .col-video video {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      display: block;
+      object-fit: cover;
+      border: 1px solid var(--border);
     }
 
-    /* responsive scroll for inner tables */
     .table-wrap { overflow-x: auto; }
 
     /* ── FOOTER / REDES ── */
@@ -384,11 +385,7 @@
       object-fit: contain;
       filter: drop-shadow(0 0 6px white);
     }
-
-    .social-item .img-wide {
-      width: 90px;
-      height: 50px;
-    }
+    .social-item .img-wide { width: 90px; height: 50px; }
 
     .footer-copy {
       text-align: center;
@@ -403,39 +400,19 @@
 
     /* ── FLOATING PANEL ── */
     .caja {
-      box-sizing: border-box;
-      width: 50px;
-      height: 60px;
-      left: 0;
-      top: 200px;
+      width: 50px; height: 60px; left: 0; top: 200px;
       background-color: #626658c7;
-      border: 2px solid white;
-      outline: 2px solid white;
-      outline-offset: 4px;
-      position: fixed;
-      opacity: 0.5;
-      text-align: center;
-      overflow: hidden;
+      border: 2px solid white; outline: 2px solid white; outline-offset: 4px;
+      position: fixed; opacity: 0.5; text-align: center; overflow: hidden;
       padding-top: 20px;
       transition: width 0.3s, opacity 0.3s, padding 0.3s;
       z-index: 200;
     }
-    .caja:hover {
-      width: 280px;
-      padding-top: 18px;
-      opacity: 0.9;
-    }
-    .caja a {
-      color: transparent;
-      font-size: 0;
-      text-decoration: none;
-    }
+    .caja:hover { width: 280px; padding-top: 18px; opacity: 0.9; }
+    .caja a { color: transparent; font-size: 0; text-decoration: none; }
     .caja:hover a {
-      color: white;
-      font-size: 16px;
-      text-transform: uppercase;
-      font-weight: bold;
-      font-family: 'Rajdhani', sans-serif;
+      color: white; font-size: 16px; text-transform: uppercase;
+      font-weight: bold; font-family: 'Rajdhani', sans-serif;
     }
   </style>
 </head>
@@ -449,7 +426,7 @@
   <!-- NAV STICKY -->
   <nav id="nav-bar">
     <div class="nav-scroll nav-scroll--modificar">
-        <h2>PERFIL PERSONAL - JUAN LAGOSTA</h2>
+      <h2>PERFIL PERSONAL - JUAN LAGOSTA</h2>
     </div>
     <div class="nav-scroll">
       <div class="nav-item"><a href="#section_1">1. Datos Personales</a></div>
@@ -477,7 +454,6 @@
   <div class="section-card" id="section_1">
     <div class="section-header"><h2>DATOS PERSONALES</h2></div>
 
-    <!-- Info personal -->
     <div class="card-row">
       <div class="card-body-col">
         <ul>
@@ -492,7 +468,6 @@
       </div>
     </div>
 
-    <!-- Familia -->
     <div class="sub-header">INTEGRANTES DE LA FAMILIA</div>
     <div class="card-row">
       <div class="card-body-col">
@@ -508,7 +483,6 @@
       </div>
     </div>
 
-    <!-- Dirección -->
     <div class="sub-header">DIRECCIÓN</div>
     <div class="card-row">
       <div class="card-body-col">
@@ -597,7 +571,7 @@
   <div class="section-card" id="section_4">
     <div class="section-header"><h2>JUEGOS FAVORITOS</h2></div>
     <div class="table-wrap">
-      <table class="inner-table">
+      <table class="games-table">
         <thead>
           <tr>
             <th>Videojuego</th>
@@ -619,7 +593,9 @@
               </ul>
             </td>
             <td>Gman</td>
-            <td><video src="videos/halflife2.mp4" controls autoplay muted></video></td>
+            <td class="col-video">
+              <video src="videos/halflife2.mp4" controls autoplay muted></video>
+            </td>
           </tr>
           <tr>
             <td><strong>Hollow Knight: Silksong</strong></td>
@@ -632,7 +608,9 @@
               </ul>
             </td>
             <td>Hornet</td>
-            <td><video src="videos/silksong.mp4" controls autoplay muted></video></td>
+            <td class="col-video">
+              <video src="videos/silksong.mp4" controls autoplay muted></video>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -690,7 +668,7 @@
           <tr>
             <td>Sistema Estadística</td>
             <td>Tercero</td>
-            <td><a class="link" href="PROYECTO_UNO_ESTADISTICA.py" target="_blank" download>Descargar Python →</a></td>
+            <td><a class="link" href="PROYECTO_UNO_ESTADISTICA.py" target="_blank" download>Descargar →</a></td>
           </tr>
         </tbody>
       </table>
