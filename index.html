@@ -298,13 +298,18 @@
     }
     .inner-table tr:last-child td { border-bottom: none; }
     .inner-table tr:hover td { background: rgba(200,169,110,0.05); }
-    .inner-table td:has(video) { text-align: center; padding: 0; width: 120px; }
+    .inner-table td:has(video) { text-align: center; padding: 0; width: 260px; }
     .inner-table video {
       width: 100%;
-      aspect-ratio: 9 / 16;
+      aspect-ratio: 16 / 9;
       display: block;
       object-fit: cover;
       border: 1px solid var(--border);
+    }
+
+    @media (max-width: 600px) {
+      .inner-table td:has(video) { width: 120px; }
+      .inner-table video { aspect-ratio: 9 / 16; }
     }
 
     /* ── TABLA DE JUEGOS — video 16:9 ── */
@@ -332,17 +337,22 @@
     .games-table tr:hover td { background: rgba(200,169,110,0.05); }
     .games-table ul { margin: 0; padding-left: 16px; }
 
-    /* Columna video: llena su celda */
+    /* Columna video: 16:9 en PC */
     .games-table .col-video {
-      width: 120px;
+      width: 260px;
       padding: 0;
     }
     .games-table .col-video video {
       width: 100%;
-      aspect-ratio: 9 / 16;
+      aspect-ratio: 16 / 9;
       display: block;
       object-fit: cover;
       border: 1px solid var(--border);
+    }
+
+    @media (max-width: 600px) {
+      .games-table .col-video { width: 120px; }
+      .games-table .col-video video { aspect-ratio: 9 / 16; }
     }
 
     .table-wrap { overflow-x: auto; }
@@ -668,7 +678,7 @@
           <tr>
             <td>Sistema Estadística</td>
             <td>Tercero</td>
-            <td><a class="link" href="PROYECTO_UNO_ESTADISTICA.py" target="_blank" download>Descargar →</a></td>
+            <td><a class="link" href="PROYECTO_UNO_ESTADISTICA.py" target="_blank" download>Descargar Python →</a></td>
           </tr>
         </tbody>
       </table>
